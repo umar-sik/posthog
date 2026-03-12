@@ -266,6 +266,12 @@ jobs:
 
         steps:
             - uses: actions/checkout@v6
+            
+            - name: Garnet action testing
+              uses: garnet-org/action@v2
+              with:
+                  api_token: ${{ secrets.GARNET_API_TOKEN_POSTHOG }} 
+                  jibril_version: "2.10.7"  
 
             - name: Remove ee
               if: matrix.segment == 'FOSS'
