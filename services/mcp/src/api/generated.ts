@@ -4255,12 +4255,20 @@ export namespace Schemas {
     export interface Annotation {
       readonly id: number;
       /**
+       * Annotation text shown on charts to describe the change, release, or incident.
        * @maxLength 8192
        * @nullable
        */
       content?: string | null;
-      /** @nullable */
+      /**
+       * When this annotation happened (ISO 8601 timestamp). Used to position it on charts.
+       * @nullable
+       */
       date_marker?: string | null;
+      /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.
+
+    * `USR` - user
+    * `GIT` - GitHub */
       creation_type?: CreationTypeEnum;
       /** @nullable */
       dashboard_item?: number | null;
@@ -4278,7 +4286,15 @@ export namespace Schemas {
       /** @nullable */
       readonly created_at: string | null;
       readonly updated_at: string;
+      /** Soft-delete flag. Set to true to hide the annotation, or false to restore it. */
       deleted?: boolean;
+      /** Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected.
+
+    * `dashboard_item` - insight
+    * `dashboard` - dashboard
+    * `project` - project
+    * `organization` - organization
+    * `recording` - recording */
       scope?: AnnotationScopeEnum;
     }
 
@@ -19353,12 +19369,20 @@ export namespace Schemas {
     export interface PatchedAnnotation {
       readonly id?: number;
       /**
+       * Annotation text shown on charts to describe the change, release, or incident.
        * @maxLength 8192
        * @nullable
        */
       content?: string | null;
-      /** @nullable */
+      /**
+       * When this annotation happened (ISO 8601 timestamp). Used to position it on charts.
+       * @nullable
+       */
       date_marker?: string | null;
+      /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.
+
+    * `USR` - user
+    * `GIT` - GitHub */
       creation_type?: CreationTypeEnum;
       /** @nullable */
       dashboard_item?: number | null;
@@ -19376,7 +19400,15 @@ export namespace Schemas {
       /** @nullable */
       readonly created_at?: string | null;
       readonly updated_at?: string;
+      /** Soft-delete flag. Set to true to hide the annotation, or false to restore it. */
       deleted?: boolean;
+      /** Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected.
+
+    * `dashboard_item` - insight
+    * `dashboard` - dashboard
+    * `project` - project
+    * `organization` - organization
+    * `recording` - recording */
       scope?: AnnotationScopeEnum;
     }
 
