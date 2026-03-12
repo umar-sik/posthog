@@ -22,6 +22,7 @@ import { filterSchemaByOperationIds } from '@posthog/openapi-codegen'
 
 import { discoverDefinitions, resolveSchemaPath } from './lib/definitions.mjs'
 import { applyNestedExclusions } from './lib/schema-exclusions.mjs'
+import { stripEnumMinLength } from './lib/schema-transforms.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const mcpRoot = path.resolve(__dirname, '..')
@@ -89,24 +90,6 @@ function stripNullDefaults(obj) {
         result[key] = stripNullDefaults(value)
     }
     return result
-}
-
-/**
- * Strip `minLength` from string schemas that have an `enum` constraint.
- * drf-spectacular adds `minLength: 1` to ChoiceField (which inherits CharField),
- * but it's redundant when `enum` already constrains the values.
- * Orval translates this into `.min(1).enum([...])` which is incorrect for enums.
- */
-function stripEnumMinLength(obj) {
-    if (!obj || typeof obj !== 'object') {
-        return
-    }
-    if (obj.enum && obj.minLength !== undefined) {
-        delete obj.minLength
-    }
-    for (const value of Object.values(obj)) {
-        stripEnumMinLength(value)
-    }
 }
 
 /**
