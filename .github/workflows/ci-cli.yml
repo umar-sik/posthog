@@ -1,4 +1,4 @@
-name: CI CLI
+name: CI CLI with Garnet review
 permissions:
     contents: read
 on:
@@ -16,6 +16,10 @@ jobs:
                 working-directory: cli
         steps:
             - uses: actions/checkout@v6
+            - name: Garnet Runtime Review
+              uses: garnet-org/action@3d47f4a9004f7356c980a0e8d420ef5984750e3c # v2.2.0
+              with:
+                  api_token: ${{ secrets.GARNET_API_TOKEN }}
 
             - name: Install rust
               uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e
@@ -35,6 +39,11 @@ jobs:
                 working-directory: cli
         steps:
             - uses: actions/checkout@v6
+            - name: Garnet Runtime Review
+              uses: garnet-org/action@3d47f4a9004f7356c980a0e8d420ef5984750e3c # v2.2.0
+              with:
+                  api_token: ${{ secrets.GARNET_API_TOKEN }}
+
 
             - name: Install rust
               uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e
@@ -52,6 +61,11 @@ jobs:
                 working-directory: cli
         steps:
             - uses: actions/checkout@v6
+            - name: Garnet Runtime Review
+              uses: garnet-org/action@3d47f4a9004f7356c980a0e8d420ef5984750e3c # v2.2.0
+              with:
+                  api_token: ${{ secrets.GARNET_API_TOKEN }}
+
 
             - name: Install rust
               uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e
@@ -70,6 +84,11 @@ jobs:
                 working-directory: cli
         steps:
             - uses: actions/checkout@v6
+            - name: Garnet Runtime Review
+              uses: garnet-org/action@3d47f4a9004f7356c980a0e8d420ef5984750e3c # v2.2.0
+              with:
+                  api_token: ${{ secrets.GARNET_API_TOKEN }}
+
 
             - name: Install rust
               uses: dtolnay/rust-toolchain@0b1efabc08b657293548b77fb76cc02d26091c7e
