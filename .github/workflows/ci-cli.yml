@@ -1,4 +1,4 @@
-name: CI CLI
+name: CI CLI with Garnet 
 permissions:
     contents: read
 on:
